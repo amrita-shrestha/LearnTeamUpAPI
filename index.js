@@ -1,13 +1,20 @@
 import axios from 'axios';
+import dotenv from 'dotenv'
+import path from "path"
+
+const __dirname = path.resolve()
+dotenv.config({ path: path.join(__dirname, './.env') });
 
 // function to fetch the leave in a month
 const  leave = async () => {
     let calEvents = []
-    await axios.get('https://api.teamup.com/ksifqcnnwkpixuit4t/events?&subcalendarId[]=11758347,&startDate=2022-12-01&endDate=2023-01-22',
+    const url = process.env.TEAMUP_SERVER_URL
+    const apiKey = process.env.TEAMUP_API_KEY
+    await axios.get(url,
     {
         headers: {
             'Content-Type': 'application/json',
-            'Teamup-Token':'2642a17a7eda1d6361f05c9358612f8914d08d32c6e8140af6926be1e47410b5'
+            'Teamup-Token': apiKey
         }
     }
     ).then(({data:{events}}) =>{

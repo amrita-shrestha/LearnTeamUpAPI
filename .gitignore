@@ -1,7 +1,9 @@
-package-lock.json
 
 node_modules
 
 # ignore ide file
 .idea
 .vscode
+
+# ignore private key
+.env
